@@ -1,0 +1,5 @@
+,surface,tourney_level,winner_name,winner_hand,winner_rank,loser_name,loser_hand,loser_rank,score,best_of,round,w_ace,w_df,l_ace,l_df,Player1,Player2
+0,Hard,A,Milos Raonic,R,14.0,Roger Federer,R,3.0,6-4 6-4,3,F,6.0,6.0,7.0,3.0,Roger Federer,Milos Raonic
+2,Hard,A,Milos Raonic,R,14.0,Bernard Tomic,R,18.0,7-6(5) 7-6(5),3,SF,13.0,3.0,10.0,3.0,Milos Raonic,Bernard Tomic
+3,Hard,A,Roger Federer,R,3.0,Grigor Dimitrov,R,28.0,6-4 6-7(4) 6-4,3,QF,7.0,1.0,8.0,2.0,Roger Federer,Grigor Dimitrov
+4,Hard,A,Dominic Thiem,R,20.0,Marin Cilic,R,13.0,2-6 7-6(4) 6-4,3,QF,6.0,0.0,11.0,2.0,Marin Cilic,Dominic Thiem

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Fichier">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#load" text="Charger" />
+                  <MenuItem mnemonicParsing="false" onAction="#save" text="Sauvegarder" />
+                  <MenuItem mnemonicParsing="false" text="Quitter" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edition">
+            <items>
+                  <CheckMenuItem fx:id="menuItemDelete" mnemonicParsing="false" text="Supprimer" />
+                  <MenuItem mnemonicParsing="false" onAction="#reset" text="Réinisialiser" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Affichage">
+               <items>
+                  <CheckMenuItem fx:id="menuItemColor" mnemonicParsing="false" text="Couleur" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Canvas fx:id="canvas" focusTraversable="true" height="600.0" onKeyPressed="#onKeyPressed" onMouseClicked="#onMouseClicked" onScroll="#onScroll" width="600.0" />
+   </children>
+</VBox>

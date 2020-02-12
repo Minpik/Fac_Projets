@@ -1,0 +1,1 @@
+Lancer dans l'ordre create_ALL.sql, create_TRIGGER.sql, insert_DATA.sql pour un bon fonctionnement.

@@ -1,0 +1,2 @@
+INSERT INTO Ami
+VALUES (11, 4);

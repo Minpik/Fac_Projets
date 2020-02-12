@@ -1,0 +1,1 @@
+SELECT incrementer_jour_date(1);

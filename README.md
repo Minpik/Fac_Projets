@@ -1,2 +1,2 @@
 # Fac_Projets
-Une partie des projets réalisés pendant mes études
+Une partie de mes projets réalisés pendant mes études

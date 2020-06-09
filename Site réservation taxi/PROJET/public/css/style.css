@@ -1,0 +1,204 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffff;
+	/*padding-top: 100px;*/
+	padding-bottom: 87px;
+	color: #000000;
+	font-family: sans-serif;
+}
+
+a {
+	text-decoration : none;
+	color: #000000;
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 25px;
+	color: #949494;
+}
+
+header {
+	background-color: #ffffff;
+	height: 60px;
+	width: 100%;
+	/*z-index: 1;*/
+	/*position: fixed;
+	top: 0px;*/
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border-bottom: 1px solid #ccc
+}
+
+#logo {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#connexion, #btnMenu {
+	line-height: 60px;
+}
+
+#connexion input[type=text], #connexion input[type=password] {
+	width: 170px;
+}
+
+#connexion input[type=submit] {
+	margin-left: 10px;
+}
+
+#nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+#nav li {
+	display: inline;
+	margin-left: 10px;
+}
+
+#contenu {
+	border-radius: 4px;
+	/*max-width: 1000px;*/
+	background-color: #ffffff;
+	margin: auto;
+	/*margin-top: 80px;*/
+	display: block;
+	text-align: center;
+	padding: 10px 0px 10px;
+	/*background-image: linear-gradient(to bottom, white, #e1f5fc);*/
+	background-color:  #f3f9fb;
+	min-height: 70vh;
+	border-bottom: 1px solid #ccc;
+}
+
+#reservation input[name=depart] {
+	margin-right: 10px
+}
+
+select[name=service] {
+	margin-top: 0px;
+}
+
+#reservation p {
+	font-weight: bold;
+}
+
+#preReservation {
+	display: none;
+}
+
+input[value=preReservation]:checked ~ #preReservation {
+	display: inline;
+}
+
+input[type=text], input[type=email], input[type=password], select, input[list=datasList] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: #0096cd;
+    color: #ffffff;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #018abd;
+}
+
+#inscription input[name=prenom], #inscription input[name=nom] {
+	width: 250px;
+}
+
+#inscription input[name=mail], #inscription input[name=mdp] {
+	width: 500px;
+}
+
+#inscription p {
+	font-weight: bold;
+}
+
+#serviceInscription {
+	display: none;
+}
+
+input[value=chauffeur]:checked ~ #serviceInscription {
+	display: inline;
+}
+
+
+.etatCourse {
+	font-size: 22px;
+	color: #949494;
+	margin: 5px;
+}
+
+.course {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 300px;
+	margin: 10px auto;
+	background-color: white;
+	padding: 5px;
+}
+
+.courseInfos {
+	margin: 5px;
+}
+
+input[value="ANNULER"], input[value="DEMARRER"], input[value="TERMINER"] {
+	padding: 5px;
+	margin: 8px 0px 0px 0px;
+}
+
+input[value="ANNULER"] {
+	background-color: #fe5d5d;
+}
+
+input[value="ANNULER"]:hover {
+	background-color: #d95050;
+}
+
+input[value="DEMARRER"] {
+	background-color: #8d69e4;
+}
+
+input[value="DEMARRER"]:hover {
+	background-color: #7d5dc9;
+}
+
+input[value="TERMINER"] {
+	background-color: #72cc4b;
+}
+
+input[value="TERMINER"]:hover {
+	background-color: #64b342;
+}
+
+#modifierProfil input[name=mdp], #modifierProfil input[name=nouveauMdp] {
+	width: 500px;
+}
+
+footer {
+	/*height: 20px;*/
+	width: 100%;
+	text-align: center;
+	color: #000000;
+	line-height: 35px;
+	position: absolute;
+	font-weight: bold;
+}

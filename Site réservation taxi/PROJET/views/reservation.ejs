@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+	<meta charset="utf-8" />
+    <title>Acceuil</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body onload="changeMinDate()">
+	<%- include header.ejs %>
+	<div id="contenu">
+	  <h1>Faites une réservation</h1>
+	  <form id="reservation" action="reservationPost" method="post">
+		<input list="datasList" name="depart" autocomplete="off" spellcheck="false" placeholder="Saisissez le lieu de depart" required>
+		<input list="datasList" name="destination" placeholder="Indiquez votre destination" required>
+		<datalist id="datasList">
+		</datalist>
+		<div id="serviceReservation">
+		  <p>Service</p>
+		  <select name="service">
+			<option value="uberX">uberX</option>
+			<option value="uberPool">uberPool</option>
+			<option value="uberBerline">uberBerline</option>
+		  </select>
+		</div>
+		<p>Type de reservation </p>
+		<input type="radio" name="type" value="normale" required>
+		<label for="normal">Normale</label>
+		<input type="radio" name="type" value="preReservation" required>
+		<label for="preReservation">Pré réservation</label>
+		<div id="preReservation">
+		  <br><br>
+		  <label for="date">Date &nbsp;</label>
+		  <input id="date" type="date" name="date">
+		  <label for="heure">&nbsp; Heure &nbsp;</label>
+		  <input id="heure" type="time" name="heure" max="23:59">
+		</div>
+		<br><br>
+		<input type="submit" value="RESERVER UNE COURSE">
+	  </form>
+	</div>
+	<%- include footer.ejs %>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+	<meta charset="utf-8" />
+    <title>Courses</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+	<%- include header.ejs %>
+	<div id="contenu">
+	  <% for (var i = 0; i < 3; i++) { %>
+		<% if (i == 0) { %>
+		  <div class="etatCourse">À venir</div>
+		<% } else if (i == 1) { %>
+		  <div class="etatCourse">En cours</div>
+		<% } else { %>
+		  <div class="etatCourse">Terminées</div>
+		<% } %>
+	    <% for (var j = 0; j < courses[i].length; j++) { %>
+		  <div class="course">
+			<p class="courseInfos">Depart : <%= courses[i][j].depart %></p>
+			<p class="courseInfos">Destination: <%= courses[i][j].destination %></p>
+			<p class="courseInfos">Date: <%= courses[i][j].dateTime %></p>
+			<% if (courses[i][j].idChauffeur != session.myId) { %>
+			  <p class="courseInfos">Service: <%= courses[i][j].service %></p>
+			<% } %>
+			<% if (i == 0) { %>
+			  <% if (courses[i][j].idChauffeur != session.myId) { %>
+			    <form id="annulerCourse" action="/annulerCourse" method="post">
+				  <input type="hidden" name="idCourse" value="<%= courses[i][j].id %>">
+				  <input type="submit" value="ANNULER">
+				</form>
+			  <% } else {%>
+			    <form id="demarrerCourse" action="/demarrerCourse" method="post">
+				  <input type="hidden" name="idCourse" value="<%= courses[i][j].id %>">
+				  <input type="submit" value="DEMARRER">
+				</form>
+			  <% } %>
+			<% } else if (i == 1) { %>
+			  <% if (courses[i][j].idChauffeur == session.myId) { %>
+			    <form id="terminerCourse" action="/terminerCourse" method="post">
+				  <input type="hidden" name="idCourse" value="<%= courses[i][j].id %>">
+				  <input type="submit" value="TERMINER">
+				</form>
+			  <% } %>
+			<% } %>
+		  </div>
+	    <% } %>
+	  <% } %>
+	</div>
+	<%- include footer.ejs %>
+  </body>
+</html>

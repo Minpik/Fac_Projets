@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+	<meta charset="utf-8" />
+    <title>Profil</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+	<%- include header.ejs %>
+	<div id="contenu">
+	  <p><%= user.prenom %> <%= user.nom %></p>
+	  <p>Inscrit le : <%= user.dateInscription %></p>
+	  <form id="modifierProfil" action="/modifierProfil" method="post">
+		<input type="password" name="mdp" placeholder="Saisissez votre mot de passe" required>
+		<br>
+		<input type="password" name="nouveauMdp" placeholder="Indiquez votre nouveeau mot de passe" minlength="6" <%= (session.type == "passager") ? "required" : "" %>>
+		<% if (session.type == "chauffeur") { %>
+		  <div id="serviceModification">
+			<p>Service</p>
+			<select name="service">
+			  <option value="uberX"<%= (user.service == "uberX")? "selected" : "" %>>uberX</option>
+			  <option value="uberPool"<%= (user.service == "uberPool")? "selected" : "" %>>uberPool</option>
+			  <option value="uberBerline"<%= (user.service == "uberBerline")? "selected" : "" %>>uberBerline</option>
+			</select>
+		  </div>
+		  <br>
+		<% } else { %>
+		  <br><br>
+		<% } %>
+		<input type="submit" value="CHANGER MES INFORMATIONS">
+		</form>
+	</div>
+	<%- include footer.ejs %>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+#contenu {
+	margin: auto;
+	display: block;
+	text-align: center;
+}
+
+#contenu input[name=mots_cles] {
+	width: 300px;
+}

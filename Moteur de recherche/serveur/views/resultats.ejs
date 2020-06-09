@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+	  <meta charset="utf-8" />
+    <title><%= mots_clefs %></title>
+	  <link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+  	<div id="contenu">
+  	  <h1>Resultats: <%= mots_clefs %></h1>
+      <p><%= time %>ms</p>
+        <form id="recherche" action="rechercher" method="post">
+          <input type="text" name="mots_cles" placeholder="Effectuez une nouvelle recherche" required>
+        </form>
+        <% for (var i = 0; i < pages.length; i++) { %>
+          <p><a href="https://fr.wikipedia.org/wiki/<%= pages[i] %>"><%= pages[i] %></a></p>
+        <% } %>
+	  </form>
+	</div>
+  </body>
+</html>

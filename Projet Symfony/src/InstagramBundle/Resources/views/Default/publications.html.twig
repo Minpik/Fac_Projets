@@ -1,0 +1,33 @@
+{% if type == "profil" %}
+	{% for publication in publications %}
+		{% if loop.index0 % 4 == 0 %}
+			<div class="row row-publications">
+				<div class="col-md-8 col-md-offset-2">
+		{% endif %}
+			<div class="col-md-3">
+				<img src="{{ asset("uploads/publications/" ~ publication.id ~ publication.image) }}" alt="" class="img-publication" value="{{ publication.id }}" style="cursor:pointer;">
+			</div>
+		{% if loop.index0 % 4 == 3 or loop.last %}
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% else %}
+	{% for publication in publications %}
+		<div class="row row-publications">
+			<div class="col-md-4 col-md-offset-4 canvas" style="padding:0;">
+				<a href="{{ path("instagram_profil", { "username": publication.user.username }) }}">
+					<div id="header-publication">
+						{% if publication.user.avatar != "" %}
+							<img src="{{ asset("uploads/avatars/" ~ publication.user.id ~ publication.user.avatar) }}">
+						{% else %}
+							<img src="{{ asset("uploads/avatars/default.png") }}">
+						{% endif %}
+						{{ publication.user.username }}
+					</div>
+				</a>
+				<img src="{{ asset("uploads/publications/" ~ publication.id ~ publication.image) }}" alt="" class="img-publication" value="{{ publication.id }}" style="cursor:pointer;" class="col-md-12">
+			</div>	
+		</div>
+	{% endfor %}
+{% endif %}

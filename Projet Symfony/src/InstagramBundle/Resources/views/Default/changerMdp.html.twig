@@ -1,0 +1,33 @@
+{% extends "InstagramBundle:Default:layout.html.twig" %}
+
+{% block body %}
+	{{ form_start(form, {"attr": {"class": "form-horizontal col-md-6 col-md-offset-3 canvas well"}}) }}
+		<fieldset>
+			<!-- Form Name -->
+			<div class="form-group">
+				<legend>Changer de mot de passe</legend>
+			</div>
+			
+			<!-- Password input-->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.password, {"attr": {"class": "form-control input-md", "placeholder": "Mot de passe"}}) }}
+    		</div>
+			</div>
+			
+			<!-- NewPassword input-->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.newpassword, {"attr": {"class": "form-control input-md", "placeholder": "Nouveau mot de passe"}}) }}
+    		</div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.changer, {"attr": {"class": "btn btn-primary btn-block"}, "label": "Changer"}) }}
+    		</div>
+			</div>
+		</fieldset>
+  {{ form_end(form) }}
+{% endblock %}

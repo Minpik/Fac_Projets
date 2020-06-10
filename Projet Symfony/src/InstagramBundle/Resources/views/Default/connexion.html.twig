@@ -1,0 +1,70 @@
+{% extends "InstagramBundle:Default:layout.html.twig" %}
+
+{% block body %}
+  {% if error %}
+    <div class="alert alert-danger">Username ou mot de passe incorrect</div>
+  {% endif %}
+	<div class="col-md-6 col-md-offset-3 canvas well">
+    <form class="form-horizontal" action="{{ path('login_check') }}" method="post">
+      <fieldset>
+        <!-- Form Name -->
+        <div class="form-group">
+          <legend>Se connecter à Instagram</legend>
+        </div>
+
+        <!-- Username input-->
+        <div class="form-group">
+          <div class="col-md-12">
+            <input id="username" name="_username" type="text" placeholder="Username" class="form-control input-md">
+          </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+          <div class="col-md-12">
+            <input id="mdp" name="_password" type="password" placeholder="Mot de passe" class="form-control input-md">
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <div class="col-md-12">
+             <button id="connexion" name="connexion" class="btn btn-primary btn-block">Se connecter</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <a href="{{ path('instagram_inscription') }}">Nouveau sur Instagram ? S'inscrire maintenant</a>
+  </div>
+
+{#
+	{{ form_start(form, {"attr": {"class": "form-horizontal col-md-6 col-md-offset-3 canvas well"}}) }}
+		<fieldset>
+			<!-- Form Name -->
+			<div class="form-group">
+				<legend>Se connecter à Instagram</legend>
+			</div>
+			
+			<!-- Email input-->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.email, {"attr": {"class": "form-control input-md", "placeholder": "Email"}}) }}
+    		</div>
+			</div>
+			
+			<!-- Password input-->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.mdp, {"attr": {"class": "form-control input-md", "placeholder": "Mot de passe"}}) }}
+    		</div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group">
+				<div class="col-md-12">
+      		{{ form_widget(form.connexion, {"attr": {"class": "btn btn-primary btn-block"}, "label": "Se connecter"}) }}
+    		</div>
+			</div>
+		</fieldset>
+  {{ form_end(form) }}#}
+{% endblock %}

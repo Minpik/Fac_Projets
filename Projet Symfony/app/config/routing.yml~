@@ -1,0 +1,3 @@
+rhodier_platform:
+    resource: "@RhodierPlatformBundle/Resources/config/routing.yml"
+    prefix:   /

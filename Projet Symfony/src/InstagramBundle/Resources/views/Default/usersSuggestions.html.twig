@@ -1,0 +1,12 @@
+{% for user in users %}
+	<a href="{{ path("instagram_profil", { "username": user.username }) }}">
+		<div>
+			{% if user.avatar != "" %}
+				<img src="{{ asset("uploads/avatars/" ~ user.id ~ user.avatar) }}" class="search-user-img">
+			{% else %}
+				<img src="{{ asset("uploads/avatars/default.png") }}" class="search-user-img">
+			{% endif %}
+			{{ user.username }}
+		</div>
+	</a>
+{% endfor %}

@@ -1,0 +1,54 @@
+{% extends "InstagramBundle:Default:layout.html.twig" %}
+
+{% block navRight %}
+	{{ include("InstagramBundle:Default:navbar-right.html.twig") }}
+{% endblock %}
+
+{% block body %}
+	{% include("InstagramBundle:Default:publications.html.twig") with {"type": "home"} %}
+	<div class="modal fade" id="modal-publication">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+				</div>
+			</div>
+		</div>
+	</div>		
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script type="text/javascript">
+		{% if publications %}
+			first = 5;
+		{% endif %}
+		$(window).scroll(function() {
+			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+				$.ajax({
+					url : "{{ path('instagram_ajax_loadActuality') }}",
+					type : 'POST',
+					dataType : 'json',
+					data : "first=" + first,
+					success : function(datas, statut) {
+						$("#body-container").append(datas["actuality"]);
+						first = datas["first"];
+						console.log(datas["first"]);
+					}
+				});
+			}
+		});
+			
+		$(document).on("click", ".img-publication", function() {
+			$.ajax({
+				url : "{{ path("instagram_ajax_loadComments") }}",
+				type : "POST",
+				dataType : 'json',
+				data : "id=" + $(this).attr("value"),
+				success : function(datas, statut) {
+					$("#modal-publication .modal-body").html(datas["commentaires"]);
+					$("#modal-publication").modal();
+				}
+			});
+		});
+	</script>
+{% endblock %}

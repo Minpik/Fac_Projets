@@ -1,0 +1,42 @@
+<div class="row" style="margin-bottom:20px">
+	<img src="{{ asset("uploads/publications/" ~ publication.id ~ publication.image) }}" alt="" class="col-md-8">
+	<div class="row">
+		<div class="col-md-4">
+			<p>{{ publication.description }}</p>
+			<hr>
+			<ul id="list-commentaires" class="list-unstyled">
+				{% for commentaire in commentaires %}
+					<li><a href="{{path('instagram_profil', { 'username': commentaire.user.username}) }}">{{ commentaire.user.username }}</a>: {{ commentaire.value }}</li>			
+				{% endfor %}
+			</ul>
+			<hr>
+			{% if not jaimeDeja %}
+				<form method="post" action="{{ path('instagram_jaime') }}">
+					<input type="hidden" name="id" value="{{ publication.id }}">
+					<button id="jaime" name="jaime" class="btn btn-success"> J'aime</button>
+				</form>
+			{% endif %}
+			<p><span class="glyphicon glyphicon-heart"></span> {{ nbrJaimes }}</p>
+		</div>
+	</div>
+</div>
+{{ form_start(form, {"action": path("instagram_commenter"), "attr": {"class": "form-horizontal"}}) }}
+	<fieldset>
+		<!-- Value input-->
+		<div class="form-group">
+			<div class="col-md-12">
+				{{ form_widget(form.value, {"attr": {"class": "form-control input-md"}}) }}
+			</div>
+		</div>
+		
+		<!-- Hidden input-->
+		<input type="hidden" name="idPublication" value="{{ publication.id }}">
+
+		<!-- Button -->
+		<div class="form-group">
+			<div class="col-md-12">
+				{{ form_widget(form.commenter, {"attr": {"class": "btn btn-primary btn-block"}, "label": "Commenter"}) }}
+			</div>
+		</div>
+	</fieldset>
+{{ form_end(form) }}

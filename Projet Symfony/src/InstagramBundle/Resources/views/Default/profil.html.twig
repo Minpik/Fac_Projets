@@ -1,0 +1,131 @@
+{% extends "InstagramBundle:Default:layout.html.twig" %}
+
+{% block navRight %}
+	{{ include("InstagramBundle:Default:navbar-right.html.twig") }}
+{% endblock %}
+
+{% block body %}
+  {% if user is defined %}
+		<div class="row" style="border:0px solid black">
+			<div class="col-md-2 col-md-offset-2 profil">
+				<form method="post" action="{{ path('instagram_profil', { 'username': user.username }) }}" enctype="multipart/form-data">
+					<div class="image-upload">
+						<label for="file-input">
+							<img src="{{ asset(avatar) }}" class="img-profil"	{{ (app.user and app.user.username == user.username) ? "style='cursor:pointer;'" : "" }}>
+						</label>
+						{% if app.user and app.user.username == user.username %}
+							<input id="file-input" name="file" type="file" accept="image/*" onchange="form.submit()"/>
+						{% endif %}
+					</div>
+				</form>
+			</div>
+			<div class="col-md-5 infos">
+				<div id="username">{{ user.username }}</div>
+				<div id="stats">
+					<span class="stat">Publications : {{ nbrPublications }}</span>
+					<span class="stat">Abonnées : {{ nbrAbonnes }}</span>
+					<span class="stat">Suivis : {{ nbrSuivis }}</span>
+				</div>
+					{% if app.user and app.user.username == user.username %}
+						<button data-toggle="modal" href="#modal-formulaire" class="btn btn-primary"><span class="glyphicon glyphicon-picture"></span> Nouvelle publication</button>
+						<div class="modal fade" id="modal-formulaire">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										{{ form_start(form, {"attr": {"class": "form-horizontal well canvas"}}) }}
+											<fieldset>
+												<div class="form-group">
+													<legend>Faire une publication</legend>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														{{ form_errors(form.description) }}
+														{{ form_widget(form.description, {"attr": {"class": "form-control input-md"}}) }}
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														{{ form_errors(form.image) }}
+														{{ form_widget(form.image, {"attr": {"class": "form-control input-md"}}) }}
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														{{ form_widget(form.publier, {"attr": {"class": "btn btn-primary btn-block"}, "label": "Publier"}) }}
+													</div>
+												</div>
+											</fieldset>
+										{{ form_end(form) }}
+									</div>
+								</div>
+							</div>
+						</div>		
+						<a href="{{ path('instagram_changerMdp') }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Changer mot de passe</a>
+					{% else %}
+						{% if abonne %}
+							<form method="post" action="{{ path('instagram_desabonner') }}">
+								<input type="hidden" name="username" value="{{ user.username }}">
+								<button id="desabonner" name="desabonner" class="btn btn-primary btn-danger">Se désabonner</button>
+							</form>
+						{% else %}
+							<form method="post" action="{{ path('instagram_sabonner') }}">
+								<input type="hidden" name="username" value="{{ user.username }}">
+								<button id="sabonner" name="sabonner" class="btn btn-primary">S'abonner</button>
+							</form>
+						{% endif %}
+					{% endif %}
+			</div>
+		</div>
+		{% include("InstagramBundle:Default:publications.html.twig") with {"type": "profil"} %}
+		<div class="modal fade" id="modal-publication">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+					</div>
+				</div>
+			</div>
+		</div>		
+	{% else %}
+		<div class="alert alert-danger">Profil inexistant</div>
+  {% endif %}
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	{% if user is defined %}
+		<script type="text/javascript">
+			{% if publications %}
+				first = 0;
+			{% endif %}
+			$(window).scroll(function() {
+				if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+					$.ajax({
+						url : "{{ path('instagram_ajax_loadPublications') }}",
+						type : 'POST',
+						dataType : 'json',
+						data : "id={{ user.id }}&" + "first=" + first,
+						success : function(datas, statut) {
+							$("#body-container").append(datas["publications"]);
+							first = datas["first"];
+							//console.log("a");
+						}
+					});
+				}
+			});
+			
+			$(document).on("click", ".img-publication", function() {
+					$.ajax({
+						url : "{{ path("instagram_ajax_loadComments") }}",
+						type : "POST",
+						dataType : 'json',
+						data : "id=" + $(this).attr("value"),
+						success : function(datas, statut) {
+							$("#modal-publication .modal-body").html(datas["commentaires"]);
+							$("#modal-publication").modal();
+						}
+					});
+					/*console.log($(this).attr("src"));*/
+			});
+		</script>
+	{% endif %}
+{% endblock %}

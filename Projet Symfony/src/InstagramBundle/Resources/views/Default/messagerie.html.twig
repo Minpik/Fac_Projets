@@ -1,0 +1,59 @@
+{% extends "InstagramBundle:Default:layout.html.twig" %}
+
+{% block navRight %}
+	{{ include("InstagramBundle:Default:navbar-right.html.twig") }}
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		{{ form_start(form, {"attr": {"class": "col-md-6 col-md-offset-3 form-horizontal canvas well"}}) }}
+			<fieldset>
+				<!-- Form Name -->
+				<div class="form-group">
+					<legend>Envoyez un message privé</legend>
+				</div>
+
+				<!-- Destinataire input-->
+				<div class="form-group">
+					<div class="col-md-12">
+						{{ form_widget(form.destinataire, {"attr": {"class": "form-control input-md", "placeholder": "Destinataire", "autocomplete" : "off"}}) }}
+					</div>
+				</div>
+
+				<!-- Value input-->
+				<div class="form-group">
+					<div class="col-md-12">
+						{{ form_widget(form.value, {"attr": {"class": "form-control input-md", "rows": "5"}}) }}
+					</div>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+					<div class="col-md-12">
+						{{ form_widget(form.envoyer, {"attr": {"class": "btn btn-primary btn-block"}, "label": "Envoyez"}) }}
+					</div>
+				</div>
+			</fieldset>
+		{{ form_end(form) }}
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#recus" data-toggle="tab">Reçus</a></li>
+				<li><a href="#envoyes" data-toggle="tab">Envoyés</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="recus">
+				{% for recu in recus %}
+					<p>De <a href="{{ path("instagram_profil", { "username": recu.expediteur.username }) }}">{{ recu.expediteur.username }}</a> : {{ recu.value }}</p>
+				{% endfor %}
+				</div>
+				<div class="tab-pane" id="envoyes">
+					{% for envoye in envoyes %}
+						<p>A <a href="{{ path("instagram_profil", { "username": envoye.destinataire.username }) }}">{{ envoye.destinataire.username }}</a> : {{ envoye.value }}</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

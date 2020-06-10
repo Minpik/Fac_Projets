@@ -1,0 +1,61 @@
+instagram_home:
+    path:     /
+    defaults: { _controller: InstagramBundle:Default:home }
+
+instagram_credits:
+    path:     /credtis
+    defaults: { _controller: InstagramBundle:Default:credits }
+
+instagram_inscription:
+    path:     /inscription
+    defaults: { _controller: InstagramBundle:Default:inscription }
+
+instagram_changerMdp:
+    path:     /changerMdp
+    defaults: { _controller: InstagramBundle:Default:changerMdp }
+
+instagram_sabonner:
+    path:     /sabonner
+    defaults: { _controller: InstagramBundle:Default:sabonner }
+
+instagram_desabonner:
+    path:     /desabonner
+    defaults: { _controller: InstagramBundle:Default:desabonner }
+
+instagram_publier:
+    path:     /publier
+    defaults: { _controller: InstagramBundle:Default:publier }
+
+instagram_commenter:
+    path:     /commenter
+    defaults: { _controller: InstagramBundle:Default:commenter }
+
+instagram_jaime:
+    path:     /jaime
+    defaults: { _controller: InstagramBundle:Default:jaime }
+
+instagram_messagerie:
+    path:     /messagerie
+    defaults: { _controller: InstagramBundle:Default:messagerie }
+
+instagram_ajax_loadActuality:
+    path:     /ajax/loadActuality
+    defaults: { _controller: InstagramBundle:Default:loadActuality }
+
+instagram_ajax_loadComments:
+    path:     /ajax/loadComments
+    defaults: { _controller: InstagramBundle:Default:loadComments }
+
+instagram_ajax_loadPublications:
+    path:     /ajax/loadPublications
+    defaults: { _controller: InstagramBundle:Default:loadPublications }
+
+instagram_ajax_searchUser:
+    path:     /ajax/searchUser
+    defaults: { _controller: InstagramBundle:Default:searchUser }
+
+instagram_profil:
+    path:     /{username}
+    defaults: { _controller: InstagramBundle:Default:profil }
+    requirements: 
+        username: \w+

@@ -1,0 +1,24 @@
+<ul class="nav navbar-nav navbar-right inline-form">
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+  	<li class="dropdown">
+    	<a id="username" data-toggle="dropdown" href="#">{{ app.user.username }} <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+      	<li><a href="{{ path('instagram_profil', { 'username': app.user.username }) }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+				<li><a href="{{ path('instagram_messagerie') }}"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
+      	<li><a href="{{ path('logout') }}"><span class="glyphicon glyphicon-remove"></span> Déconnexion</a></li>
+    	</ul>
+		</li>
+	{% else %}
+ 		<li>
+    	<a href="{{ path('login') }}"><span class="glyphicon glyphicon-user"></span> Se connecter</a>
+	  </li>
+	{% endif %}
+</ul>
+<form class="navbar-form navbar-right inline-form">
+	<div class="form-group dropdown">
+		<input id="searchUser" type="search" class="form-control" placeholder="Rechercher sur Instagram" autocomplete="off" data-toggle="dropdown">
+		<input id="dropdown-pop" type="hidden">
+		<div id="user-suggest" class="dropdown-menu" role="menu">
+    </div>
+	</div>
+</form>

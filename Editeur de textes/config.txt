@@ -1,0 +1,5 @@
+max_width: 10
+copy: d
+cut: ^X
+paste: ^W
+auto_cut: 0
